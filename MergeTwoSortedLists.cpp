@@ -32,10 +32,12 @@ class Solution{
 				if(p->val < q->val)
 				{
 					k->next = p;
+					k = k-next;
 					p = p->next;
 				}else
 				{
 					k->next = q;
+					k = k-next;
 					q = q->next;
 				}
 
