@@ -14,13 +14,13 @@ class Solution{
 				{
 					if(board[i][j] != '.')
 					{
-						if(	tool[board[i][j] - '0'])
+						if(	tool[board[i][j] - '0'-1])
 						{
 							return false;
 						}
 						else
 						{
-							tool[board[i][j]]++;
+							tool[board[i][j]- '0'-1]++;
 						}
 					}
 				}
@@ -31,15 +31,15 @@ class Solution{
 				vector<int> tool(9,0);
 				for(int j = 0;j < board.size();j++)
 				{
-					if(board[i][j] != '.')
+					if(board[j][i] != '.')
 					{
-						if(	tool[board[j][i] - '0'])
+						if(tool[board[j][i] - '0' - 1])
 						{
 							return false;
 						}
 						else
 						{
-							tool[board[j][i]]++;
+							tool[board[j][i]- '0' - 1]++;
 						}
 					}
 				}
@@ -50,16 +50,20 @@ class Solution{
 				for(int j = 0;j < 3;j++)
 				{
 					int r_pre = 3 * i;
-					int c_pre = 3*i; 
+					int c_pre = 3 * j; 
 					vector<int> tool(9,0);
 					for(int ii = 0;ii < 3;ii++)
 					{
 						for(int jj = 0;jj < 3;jj++)
-						{
-							if(tool[board[r_pre + ii][c_pre + jj]])
-								return false;
-							else
-								tool[board[r_pre + ii][c_pre + jj]]++;
+						{	
+							if(board[r_pre + ii][c_pre + jj] != '.')
+							{
+								char c = board[r_pre + ii][c_pre + jj];
+								if(tool[board[r_pre + ii][c_pre + jj] - '0' - 1])
+									return false;
+								else
+									tool[board[r_pre + ii][c_pre + jj]- '0' - 1]++;
+							}
 						}
 					}
 				}
